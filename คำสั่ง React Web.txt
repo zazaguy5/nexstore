@@ -1,0 +1,8 @@
+1.ลง Vite เพื่อใช้ React
+npm install -g create-vite
+
+2.สร้างโปรเจค React
+npm create vite@latest nexstore -- --template react
+
+3.คำสั่งรัน Web
+npm run dev

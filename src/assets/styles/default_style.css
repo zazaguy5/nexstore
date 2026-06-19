@@ -1,0 +1,17 @@
+.mainBox {
+	min-height: 100vh;
+	background-color: #f0f2f5;
+	display: flex;
+	justify-content: 'center';
+	align-items: center
+}
+
+.loginBox {
+	/* height: 400; */
+	width: 360;
+	padding: '2rem';
+	background-color: 'white';
+	border-radius: '10px';
+	border: '1px solid #ccc';
+	box-shadow: '0 2px 12px rgba(0;0;0;0.1)'
+}
