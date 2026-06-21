@@ -1,11 +1,36 @@
-import { createRoot } from 'react-dom/client'
-import { useState } from 'react'
+import './assets/styles/default_style.css';
+import { Eye, EyeOff } from 'lucide-react';
 
+import { createRoot } from 'react-dom/client';
+import { useState } from 'react';
 import { HomePage } from './pages/home_page.jsx';
+
+function Checkbox({ id, label }) {
+  return (
+    <div className="checkbox-wrapper-4">
+      <input className="inp-cbx" id={id} type="checkbox" />
+      <label className="cbx" htmlFor={id}>
+        <span>
+          <svg width="12px" height="10px" viewBox="0 0 12 10" fill="none">
+            <polyline
+              points="1.5 6 4.5 9 10.5 1"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+        <span>{label}</span>
+      </label>
+    </div>
+  );
+}
 
 function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [shwPass, setShwPass] = useState(false);
 
   return (
     <>
@@ -30,21 +55,23 @@ function App() {
 
           <div className="inputField" style={{ marginBottom: '1rem' }}>
             <label>อีเมล</label>
-            <input type="email" placeholder="กรอกอีเมลของท่าน" style={{
+            <input type="email" placeholder="อีเมล" style={{
               display: 'block',
-              width: '100%',
-              marginTop: 4
+              width: '70%',
+              marginTop: '8px'
             }} onChange={(e) => setUsername(e.target.value)} />
           </div>
 
           <div className="inputField" style={{ marginBottom: '1rem' }}>
             <label>รหัสผ่าน</label>
-            <input type="password" placeholder="กรอกรหัสผ่านของท่าน" style={{
-              display: 'block',
-              width: '100%',
-              marginTop: 4
-            }} onChange={(e) => setPassword(e.target.value)} />
+            <div className="password-container">
+              <input type={shwPass ? 'text' : 'password'} placeholder="รหัสผ่าน" onChange={(e) => setPassword(e.target.value)}/>
+              <button type="button" onClick={() => setShwPass(prev => !prev)}>
+                {shwPass ? <EyeOff size={20}/> : <Eye size={20}/>}
+              </button>
+            </div>
           </div>
+          <Checkbox id="remember" label="จดจำรหัสผ่าน" />
 
           <button className="loginButton" style={{ width: '100%', marginTop: '1rem' }} onClick={() => {
             console.log(`ชื่อผู้ใช้: ${username}, รหัสผ่าน: ${password}`);
@@ -61,4 +88,4 @@ function App() {
   );
 }
 
-createRoot(document.getElementById('root')).render(<HomePage />);
+createRoot(document.getElementById('root')).render(<App />);

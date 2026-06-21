@@ -6,3 +6,6 @@ npm create vite@latest nexstore -- --template react
 
 3.คำสั่งรัน Web
 npm run dev
+
+4.เพิ่มไอคอนของ Lucide ไอคอนสไตล์มินิมอล เส้นโปร่ง สวยงาม
+npm install lucide-react
