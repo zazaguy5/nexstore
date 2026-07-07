@@ -7,5 +7,24 @@ npm create vite@latest nexstore -- --template react
 3.คำสั่งรัน Web
 npm run dev
 
-4.เพิ่มไอคอนของ Lucide ไอคอนสไตล์มินิมอล เส้นโปร่ง สวยงาม
-npm install lucide-react
+
+** ตั้งค่า Tailwind CSS ใน React **
+1.ลง TailwindCSS
+npm install tailwindcss @tailwindcss/vite
+
+2. ตั้งค่า TailwindCSS ใน vite.config.js
+// เพิ่ม
+import tailwindcss from '@tailwindcss/vite';
+
+// เพิ่มลงใน plugins
+export default defineConfig({
+   plugins: [
+      react(),
+      tailwindcss(),  // เพิ่มตรงนี้
+   ],
+})
+
+3.นำเข้าในไฟล์ src/index.css
+@import "tailwindcss";
+
+0.25 * 4 -> มาจาก p-4 จะได้ 1 rem และ 1 rem เท่ากับ 16px
