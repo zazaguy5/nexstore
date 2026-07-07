@@ -1,5 +1,6 @@
+import './index.css';
 import './assets/styles/default_style.css';
-import { Eye, EyeOff } from 'lucide-react';
+//import { Eye, EyeOff } from 'lucide-react';
 
 import { createRoot } from 'react-dom/client';
 import { useState } from 'react';
@@ -27,63 +28,40 @@ function Checkbox({ id, label }) {
   );
 }
 
-function App() {
+export default function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [shwPass, setShwPass] = useState(false);
 
   return (
     <>
-      <div style={{
-        minHeight: '100vh',
-        backgroundColor: '#f0f2f5',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
+      <form onSubmit={(e) => { e.preventDefault(); }}>
+        <div className="flex min-h-screen items-center justify-center bg-slate-100 p-4">
 
-        <div className="loginBox" style={{
-          //height: 400,
-          width: 360,
-          padding: '2rem',
-          backgroundColor: 'white',
-          borderRadius: '10px',
-          border: '1px solid #ccc',
-          boxShadow: '0 2px 12px rgba(0,0,0,0.1)'
-        }}>
-          <h2 style={{ marginBottom: '20px' }}>เข้าสู่ระบบ</h2>
-
-          <div className="inputField" style={{ marginBottom: '1rem' }}>
-            <label>อีเมล</label>
-            <input type="email" placeholder="อีเมล" style={{
-              display: 'block',
-              width: '70%',
-              marginTop: '8px'
-            }} onChange={(e) => setUsername(e.target.value)} />
+          <div id="login-form" className="h-auto w-xl p-[25px] rounded-xl bg-[#B2BEB5] shadow-md">
+            <h1 className="text-white text-3xl font-bold pb-6">เข้าสู่ระบบ</h1>
+            <input id="username" type="text" placeholder="บัญชี" onChange={(e) => setUsername(e.target.value)} onInvalid={(e) => e.target.setCustomValidity('กรุณากรอกบัญชี')} onInput={(e) => e.target.setCustomValidity('')}
+              className="w-full h-10 p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-800 bg-white"
+              required />
+            <input id="password" type="password" placeholder="รหัสผ่าน" onChange={(e) => setPassword(e.target.value)} onInvalid={(e) => e.target.setCustomValidity('กรุณากรอกรหัสผ่าน')} onInput={(e) => e.target.setCustomValidity('')}
+              className="w-full h-10 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-800 bg-white"
+              required />
+            <Checkbox id="remember" label="จดจำรหัสผ่าน" />
+            <button type="submit" className="w-full h-14 mt-10 bg-[#276dbd] hover:bg-[#276dbd]-600 transition-colors rounded-lg text-white font-bold text-2xl cursor-pointer"
+              onClick={() => {
+                console.log(`username: ${username}, password: ${password}`);
+                const loginForm = document.getElementById('username');
+                if (username !== '' && password !== '') {
+                  alert('เข้าสู่ระบบสำเร็จ');
+                  // document.getElementById('username').value = '';
+                  // document.getElementById('password').value = '';
+                }
+              }}>
+              เข้าสู่ระบบ
+            </button>
           </div>
-
-          <div className="inputField" style={{ marginBottom: '1rem' }}>
-            <label>รหัสผ่าน</label>
-            <div className="password-container">
-              <input type={shwPass ? 'text' : 'password'} placeholder="รหัสผ่าน" onChange={(e) => setPassword(e.target.value)}/>
-              <button type="button" onClick={() => setShwPass(prev => !prev)}>
-                {shwPass ? <EyeOff size={20}/> : <Eye size={20}/>}
-              </button>
-            </div>
-          </div>
-          <Checkbox id="remember" label="จดจำรหัสผ่าน" />
-
-          <button className="loginButton" style={{ width: '100%', marginTop: '1rem' }} onClick={() => {
-            console.log(`ชื่อผู้ใช้: ${username}, รหัสผ่าน: ${password}`);
-
-            if (username != '' && password != '') {
-              alert('เข้าสู่ระบบสำเร็จ');
-            } else {
-              alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-            }
-          }}>เข้าสู่ระบบ</button>
         </div>
-      </div>
+      </form>
     </>
   );
 }
