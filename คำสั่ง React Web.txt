@@ -27,4 +27,8 @@ export default defineConfig({
 3.นำเข้าในไฟล์ src/index.css
 @import "tailwindcss";
 
-0.25 * 4 -> มาจาก p-4 จะได้ 1 rem และ 1 rem เท่ากับ 16px
+คลาส p-4 คือ ย่อมายาก Padding 4 = 1 rem  
+1 rem = 16px เพิ่มขึ้นทีละ 0.25
+
+4.ลง react-router ตัวช่วยจัดการเปลี่ยนหน้าเว็บ
+npm i react-router-dom
