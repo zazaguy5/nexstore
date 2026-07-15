@@ -8,20 +8,6 @@ import { LoginPage } from './pages/LoginPage.jsx';
 import { ForgotPasswordPage } from './pages/ForgotPassPage.jsx';
 import Navbar from './components/customer/Navbar.jsx';
 
-// export default function App() {
-//   return (
-//     <>
-//       <Router>
-//         <Routes>
-//           <Route path="/" element={<LoginPage />} />
-//           <Route path="/home" element={<HomePage />} />
-//           <Route path="/forgot-password" element={<ForgotPasswordPage/>} />
-//         </Routes>
-//       </Router>
-//     </>
-//   );
-// }
-
 function Layout() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
