@@ -25,12 +25,13 @@ function Navbar() {
         <p className="text-lg font-bold">Nexstore</p>
         <div className="flex space-x-4 items-center">
           <Link to="/">หน้าหลัก</Link>
-          {isLogin ? 
+          {isLogin ?
             <button className="cursor-pointer p-4" onClick={handleLogout}>ออกจากระบบ</button> : <Link to="/login" className='pr-4'>เข้าสู่ระบบ</Link>
           }
           <div className="flex items-center cursor-pointer" onClick={() => { navigate('/profile') }}>
+            1<img src="/images/cart.png" className="w-[40px] h-[20px] bg-white-800 pr-6" />
             <p className="text-white font-bold text-xl pr-2">{username}</p>
-            <img src="/images/default-profile.png" className="w-[40px] h-[40px]"/>
+            <img src="/images/default-profile.png" className="w-[40px] h-[40px]" />
           </div>
         </div>
       </div>
