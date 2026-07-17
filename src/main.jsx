@@ -4,6 +4,7 @@ import './index.css';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { HomePage } from './pages/HomePage.jsx';
+import { ProfilePage } from './pages/ProfilePage.jsx';
 import { LoginPage } from './pages/LoginPage.jsx';
 import { ForgotPasswordPage } from './pages/ForgotPassPage.jsx';
 import Navbar from './components/customer/Navbar.jsx';
@@ -18,6 +19,7 @@ function Layout() {
       {!isLoginRoute && (isAdminRoute ? <AdminNavbar /> : <Navbar />)}
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       </Routes>

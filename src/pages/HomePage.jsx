@@ -51,26 +51,24 @@ export function HomePage() {
   if (error) return <p>เกิดข้อผิดพลาด: {error}</p>
 
   return (
-    <>
-      <div className="p-4">
-        <p className="text-lg font-bold mb-4">รายการอาหารแนะนำ</p>
-        <div className="flex justify-center pl-[20px] pr-[20px] gap-6">
-          {data.slice(0, 3).map((p, index) => productCard(p.name, p.price, p.quantity, () => setBasket(basket + 1)))}
-        </div>
-
-        <div className="flex justify-between mb-4">
-          <p className="text-lg font-bold">รายการอาหาร</p>
-          <div className="w-[80px] flex items-center cursor-pointer">
-            <p className="text-lg mr-2">ทั้งหมด</p>
-            <img src="/images/down-arrow.png" className="w-[15px] h-[15px]" />
-          </div>
-        </div>
-        <div className="grid grid-cols-5 gap-x-10 gap-y-4 p-2">
-          {data.map((p, index) => productCard(p.name, p.price, p.quantity, () => setBasket(basket + 1)))}
-        </div>
-
-        <p className="text-lg font-bold">รายการในตะกร้า: {basket} ชิ้น</p>
+    <div className="p-4">
+      <p className="text-lg font-bold mb-4">รายการอาหารแนะนำ</p>
+      <div className="flex justify-center pl-[20px] pr-[20px] gap-6">
+        {data.slice(0, 3).map((p, index) => productCard(p.name, p.price, p.quantity, () => setBasket(basket + 1)))}
       </div>
-    </>
+
+      <div className="flex justify-between mt-4 mb-2">
+        <p className="text-lg font-bold">รายการอาหาร</p>
+        <div className="w-[80px] flex items-center cursor-pointer">
+          <p className="text-lg mr-2">ทั้งหมด</p>
+          <img src="/images/down-arrow.png" className="w-[15px] h-[15px]" />
+        </div>
+      </div>
+      <div className="grid grid-cols-5 gap-x-10 gap-y-4 p-2">
+        {data.map((p, index) => productCard(p.name, p.price, p.quantity, () => setBasket(basket + 1)))}
+      </div>
+
+      <p className="text-lg font-bold">รายการในตะกร้า: {basket} ชิ้น</p>
+    </div>
   );
 }

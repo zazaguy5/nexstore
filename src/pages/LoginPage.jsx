@@ -59,6 +59,8 @@ export function LoginPage() {
                   // ตั้งเวลา 1 วินาทีจำลองการเข้าสู่ระบบ Login API
                   setIsLoading(true);
                   setTimeout(() => {
+                    sessionStorage.setItem('username', username);
+                    sessionStorage.setItem('isLogin', true);
                     setIsLoading(false);
                     navigate('/');
                   }, 1000);
