@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { LoadingComponent } from '../loading';
 
 function Navbar() {
+  const [isLogin, setIsLogin] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const navigate = useNavigate();
 
@@ -18,11 +19,13 @@ function Navbar() {
 
   return (
     <>
-      <div className="w-full h-16 bg-[#6B4226] text-white flex justify-between items-center">
+      <div className="w-full h-16 bg-[#6B4226] text-white flex justify-between items-center p-4">
         <p className="text-lg font-bold">Nexstore</p>
         <div className="flex space-x-4">
           <Link to="/">หน้าหลัก</Link>
-          <button className="cursor-pointer" onClick={handleLogout}>ออกจากระบบ</button>
+          {isLogin ? 
+            <button className="cursor-pointer" onClick={handleLogout}>ออกจากระบบ</button> : <Link to="/login">เข้าสู่ระบบ</Link>
+          }
         </div>
       </div>
 
