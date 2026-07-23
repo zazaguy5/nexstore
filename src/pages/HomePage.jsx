@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { productCard } from '../components/home/productCard.jsx';
 
 /**
@@ -10,15 +11,21 @@ import { productCard } from '../components/home/productCard.jsx';
  */
 
 export function HomePage() {
+  const [isLogin, setIsLogin] = useState(sessionStorage.getItem('isLogin') ?? false);
   const [basket, setBasket] = useState(0);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  if (!isLogin) {
+    navigate(`/login`);
+  }
 
   useEffect(() => {
     const controller = new AbortController();
 
-    async function fetchProduct() {
+    async function fetchData() {
       try {
         const response = await fetch('http://localhost:3000/products/', {
           signal: controller.signal,
@@ -43,7 +50,7 @@ export function HomePage() {
       }
     }
 
-    fetchProduct();
+    fetchData();
     return () => controller.abort();
   }, []);
 
@@ -54,7 +61,7 @@ export function HomePage() {
     <div className="p-4">
       <p className="text-lg font-bold mb-4">รายการอาหารแนะนำ</p>
       <div className="flex justify-center pl-[20px] pr-[20px] gap-6">
-        {data.slice(0, 3).map((p, index) => productCard(p.name, p.price, p.quantity, () => setBasket(basket + 1)))}
+        {data.slice(0, 3).map((p, index) => productCard(p.name, p.price, p.quantity, () => navigate(`/productDetail/${p.id}`)))}
       </div>
 
       <div className="flex justify-between mt-4 mb-2">
@@ -65,10 +72,8 @@ export function HomePage() {
         </div>
       </div>
       <div className="grid grid-cols-5 gap-x-10 gap-y-4 p-2">
-        {data.map((p, index) => productCard(p.name, p.price, p.quantity, () => setBasket(basket + 1)))}
+        {data.map((p, index) => productCard(p.name, p.price, p.quantity, () => navigate(`/productDetail/${p.id}`)))}
       </div>
-
-      <p className="text-lg font-bold">รายการในตะกร้า: {basket} ชิ้น</p>
     </div>
   );
 }

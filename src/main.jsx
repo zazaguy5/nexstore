@@ -6,13 +6,16 @@ import { createRoot } from 'react-dom/client';
 import { HomePage } from './pages/HomePage.jsx';
 import { ProfilePage } from './pages/ProfilePage.jsx';
 import { LoginPage } from './pages/LoginPage.jsx';
+import { RegisterPage } from './pages/RegisterPage.jsx';
 import { ForgotPasswordPage } from './pages/ForgotPassPage.jsx';
+import { CartPage } from './pages/TestCartPage.jsx'; 
 import Navbar from './components/customer/Navbar.jsx';
+import { ProductDetailPage } from './pages/ProductDetailPage.jsx';
 
 function Layout() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
-  const isLoginRoute = location.pathname === "/login" || location.pathname === "/forgot-password";
+  const isLoginRoute = location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/forgot-password";
 
   return (
     <>
@@ -21,7 +24,10 @@ function Layout() {
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/productDetail/:id" element={<ProductDetailPage />}/>
+        <Route path="/cart" element={<CartPage />}/>
       </Routes>
     </>
   );

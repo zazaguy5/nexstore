@@ -28,8 +28,10 @@ function Navbar() {
           {isLogin ?
             <button className="cursor-pointer p-4" onClick={handleLogout}>ออกจากระบบ</button> : <Link to="/login" className='pr-4'>เข้าสู่ระบบ</Link>
           }
+          <div className='cursor-pointer' onClick={() => { navigate('/cart') }}>
+              1<img src="/images/cart.png" className="w-[40px] h-[20px] bg-white-800 pr-6" />
+            </div>  
           <div className="flex items-center cursor-pointer" onClick={() => { navigate('/profile') }}>
-            1<img src="/images/cart.png" className="w-[40px] h-[20px] bg-white-800 pr-6" />
             <p className="text-white font-bold text-xl pr-2">{username}</p>
             <img src="/images/default-profile.png" className="w-[40px] h-[40px]" />
           </div>
