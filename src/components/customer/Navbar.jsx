@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { CartCount } from './CartCount';
 import { LoadingComponent } from '../loading';
 
 function Navbar() {
@@ -28,9 +29,10 @@ function Navbar() {
           {isLogin ?
             <button className="cursor-pointer p-4" onClick={handleLogout}>ออกจากระบบ</button> : <Link to="/login" className='pr-4'>เข้าสู่ระบบ</Link>
           }
-          <div className='cursor-pointer' onClick={() => { navigate('/cart') }}>
-              1<img src="/images/cart.png" className="w-[40px] h-[20px] bg-white-800 pr-6" />
-            </div>  
+          <div className='flex cursor-pointer' onClick={() => { navigate('/cart') }}>
+            <img src="/images/cart.png" className="w-[22px] h-[22px] bg-white-800" />
+            <CartCount></CartCount>
+          </div>
           <div className="flex items-center cursor-pointer" onClick={() => { navigate('/profile') }}>
             <p className="text-white font-bold text-xl pr-2">{username}</p>
             <img src="/images/default-profile.png" className="w-[40px] h-[40px]" />

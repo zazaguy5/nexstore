@@ -55,19 +55,19 @@ export function ProductDetailPage() {
       <p className="text-base">ราคา: {data[0].price} บาท</p>
       <p className="text-base pb-10">จำนวนในคลัง: {pAmount} ชิ้น</p>
       <div className="flex items-center">
-        <div onClick={() => {
+        <button onClick={() => {
             if (amount > 0) {
               setAmount(amount - 1);
             }
-          }} className="pt-2 pb-2 pr-4 pl-4 m-6 mr-4 bg-red-500 rounded text-white cursor-pointer hover:bg-red-600"><img src="/images/add.png" className="bg-white-800" /></div>
-        <p className="text-base">{amount}</p>
-        <div onClick={() => {
+          }} className="p-2 ml-4 mb-8 bg-red-500 rounded text-white cursor-pointer hover:bg-red-600"><img src="/images/minus.png" className="w-[15px] h-[15px] bg-white-800" /></button>
+        <p className="text-base ml-4 mb-8">{amount}</p>
+        <button onClick={() => {
             if (amount < pAmount) {
               setAmount(amount + 1);
             }
-          }} className="pt-2 pb-2 pr-4 pl-4 m-6 mr-4 bg-green-500 rounded text-white cursor-pointer hover:bg-green-600">+</div>
+          }} className="p-2 ml-4 mb-8 bg-green-500 rounded text-white cursor-pointer hover:bg-green-600"><img src="/images/add.png" className="w-[15px] h-[15px] bg-white-800" /></button>
       </div>
-      <buttonc className="px-8 py-1 bg-blue-600 hover:bg-blue-700 rounded text-lg text-white cursor-pointer" onclick={() => {}}>เพิ่มลงตะกร้า</buttonc>
+      <button className="px-8 py-1 bg-blue-600 hover:bg-blue-700 rounded text-lg text-white cursor-pointer" onClick={() => {}}>เพิ่มลงตะกร้า</button>
     </div>
   );
 }

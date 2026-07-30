@@ -46,7 +46,7 @@ export function LoginPage() {
       const result = await login({ username: username, password: password });
       console.log(`${result.message}`);
       if (result.status == 'success') {
-        sessionStorage.setItem('username', username);
+        sessionStorage.setItem('username', result.data.name);
         sessionStorage.setItem('isLogin', true);
         sessionStorage.setItem('userId', result.data.userId);
         navigate('/');
