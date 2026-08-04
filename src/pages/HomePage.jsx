@@ -49,7 +49,7 @@ export function HomePage() {
     <div className="p-4">
       <p className="text-lg font-bold mb-4">รายการอาหารแนะนำ</p>
       <div className="flex justify-center pl-[20px] pr-[20px] gap-6">
-        {data.slice(0, 3).map((p, index) => productCard(p.name, p.price, p.quantity, () => navigate(`/productDetail/${p.id}`)))}
+        {data.slice(0, 3).map((p) => productCard(p.name, p.price, p.quantity, () => navigate(`/productDetail/${p.id}`)))}
       </div>
 
       <div className="flex justify-between mt-4 mb-2">
@@ -60,7 +60,7 @@ export function HomePage() {
         </div>
       </div>
       <div className="grid grid-cols-5 gap-x-10 gap-y-4 p-2">
-        {data.map((p, index) => productCard(p.name, p.price, p.quantity, () => navigate(`/productDetail/${p.id}`)))}
+        {data.map((p) => productCard(p.name, p.price, p.quantity, () => navigate(`/productDetail/${p.id}`)))}
       </div>
     </div>
   );
