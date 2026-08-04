@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LoadingComponent } from '../components/loading.jsx';
+import { getProducts } from '../utils/apiServices.js';
 import { productCard } from '../components/home/productCard.jsx';
 
 /**
@@ -23,38 +25,24 @@ export function HomePage() {
   }
 
   useEffect(() => {
-    const controller = new AbortController();
+    const fetchProduct = async () => {
+      setLoading(true);
+      setError(null);
 
-    async function fetchData() {
       try {
-        const response = await fetch('http://localhost:3000/products/', {
-          signal: controller.signal,
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status ${response.status}`);
-        }
-
-        const result = await response.json();
+        const result = await getProducts();
         setData(result.data ?? result);
       } catch (error) {
-        if (err instanceof Error) {
-          if (err.name !== "AbortError") {
-            setError(err.message);
-          }
-        } else {
-          setError("An unknown error occurred");
-        }
+        setError(error.message);
       } finally {
         setLoading(false);
       }
-    }
+    };
 
-    fetchData();
-    return () => controller.abort();
+    fetchProduct();
   }, []);
 
-  if (loading) return <p>กำลังโหลด....</p>;
+  if (loading) return LoadingComponent();
   if (error) return <p>เกิดข้อผิดพลาด: {error}</p>
 
   return (

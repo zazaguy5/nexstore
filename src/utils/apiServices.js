@@ -16,6 +16,18 @@ export function registerUser({ name, accname, password }) {
   });
 }
 
+export async function getProducts() {
+  return await apiRequest(`/products`, { method: 'GET' });
+} 
+
 export async function getProductById(id) {
-  return await apiRequest(`/products/${id}`);
+  return await apiRequest(`/products/${id}`, { method: 'GET' });
+} 
+
+export async function getCart(userId) {
+  return await apiRequest(`/products/carts/${userId}`, { method: 'GET' });
+}
+
+export async function getCartCount(userId) {
+  return await apiRequest(`/products/carts/count/${userId}`, { method: 'GET' });
 }

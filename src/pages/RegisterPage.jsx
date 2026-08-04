@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoadingComponent } from '../components/loading';
-import { registerUser } from '../utils/userServices';
+import { registerUser } from '../utils/apiServices';
 
 export function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);

@@ -1,5 +1,4 @@
 import './index.css';
-//import { Eye, EyeOff } from 'lucide-react';
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';

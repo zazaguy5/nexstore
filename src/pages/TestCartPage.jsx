@@ -1,49 +1,44 @@
+import { useState, useEffect } from "react";
+import { productCard } from '../components/home/productCard.jsx';
+import { getCart } from "../utils/apiServices.js";
+import { LoadingComponent } from '../components/loading';
+
 export function CartPage() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [userId, setUserId] = useState(sessionStorage.getItem('userId') ?? 'null');
 
   useEffect(() => {
-    const controller = new AbortController();
-
-    async function fetchData() {
-      const controller = new AbortController();
+    const fetchProduct = async () => {
+      setLoading(true);
+      setError(null);
 
       try {
-        const response = await fetch(`http://localhost:3000/products/${id}`, {
-          signal: controller.signal,
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status ${response.status}`);
-        }
-
-        const result = await response.json();
+        const result = await getCart(userId);
         setData(result.data ?? result);
       } catch (error) {
-        if (err instanceof Error) {
-          if (err.name !== "AbortError") {
-            setError(err.message);
-          }
-        } else {
-          setError("An unknown error occurred");
-        }
+        setError(error.message);
       } finally {
         setLoading(false);
       }
-    }
+    };
 
-    fetchData();
-    return () => controller.abort();
+    if (userId !== 'null') {
+      fetchProduct();
+    }
   }, []);
 
-  if (loading) return <p>กำลังโหลด....</p>;
+  if (loading) return LoadingComponent();
   if (error) return <p>เกิดข้อผิดพลาด: {error}</p>
 
   return (
     <div className="w-full h-full p-4">
       <p className="text-black text-xl font-bold">รายการสินค้าในตะกร้า</p>
-      {data.map((cart) => <p>cart.w</p>)}
+      {data.length != 0 ?
+        data.map((cart) => productCard(cart.name, cart.price * cart.quantity, cart.quantity, null)) :
+        <p className="pt-4">ไม่มีสินค้าในตะกร้า</p>
+      }
     </div>
   );
 }

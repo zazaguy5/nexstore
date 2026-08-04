@@ -3,7 +3,7 @@ import '../assets/styles/default_style.css';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { LoadingComponent } from '../components/loading';
-import { login } from '../utils/userServices';
+import { login } from '../utils/apiServices';
 
 function Checkbox({ id, label }) {
   return (
@@ -46,7 +46,7 @@ export function LoginPage() {
       const result = await login({ username: username, password: password });
       console.log(`${result.message}`);
       if (result.status == 'success') {
-        sessionStorage.setItem('username', username);
+        sessionStorage.setItem('username', result.data.name);
         sessionStorage.setItem('isLogin', true);
         sessionStorage.setItem('userId', result.data.userId);
         navigate('/');
